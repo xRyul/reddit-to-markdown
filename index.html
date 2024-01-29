@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reddit Comments in Markdown</title>
-    <h1>Convert Reddit Comments to Markdown</h1>
-    <p>This interactive tool fetches comments from any Reddit thread and converts them into Markdown format.</p>
-    
-    <p>To use: Just paste the Reddit post URL, click ‘Get Comments’.”</p>
+    <title>Reddit Comments in Markdown - Convert Reddit Threads into Markdown</title>
+    <meta name="description" content="This interactive tool fetches comments from any Reddit thread and converts them into a clean, readable Markdown format.">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <h1>Convert Reddit Comments to Markdown</h1>
+    <p>This interactive tool fetches comments from any Reddit thread and converts them into Markdown format.</p>
+    <p>To use: Just paste the Reddit post URL, click ‘Get Comments’.”</p>
     <input type="text" id="url" placeholder="Enter the Reddit post URL">
     <button onclick="getComments()">Get Comments</button>
     <div id="container">
         <textarea id="output"></textarea>
-        <svg id="copyButton" onclick="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+        <svg id="copyButton" onclick="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16" alt="Copy to Clipboard Button">
             <path d="M6 1a2 2 0 0 0-2 2v1H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H6zm0 1h4v1H6V2z"/>
         </svg>
     </div>
