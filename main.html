@@ -2,12 +2,32 @@
 <html>
 <head>
     <title>Reddit Comments in Markdown</title>
+    <style>
+        #container {
+            position: relative;
+            width: 100%;
+        }
+        #output {
+            width: 100%;
+            height: 200px;
+        }
+        #copyButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <input type="text" id="url" placeholder="Enter the Reddit post URL">
     <button onclick="getComments()">Get Comments</button>
-    <button onclick="copyToClipboard()">Copy to Clipboard</button>
-    <div id="output"></div>
+    <div id="container">
+        <textarea id="output"></textarea>
+        <svg id="copyButton" onclick="copyToClipboard()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+            <path d="M6 1a2 2 0 0 0-2 2v1H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H6zm0 1h4v1H6V2z"/>
+        </svg>
+    </div>
 
     <script>
         async function getComments() {
@@ -30,7 +50,7 @@
                     const body = comment.data.body;
                     
                     // Convert to Markdown (here, we're just adding bold formatting to the author name)
-                    markdownOutput += `**${author}** : ${body}<br><br>`;
+                    markdownOutput += `**${author}** : ${body}\n\n`;
                     
                     // Check for replies to the comment
                     if ('replies' in comment.data && comment.data.replies !== '') {
@@ -46,23 +66,15 @@
                 parseComment(comment);
             }
             
-            // Output the comments in the div
-            document.getElementById('output').innerHTML = markdownOutput;
+            // Output the comments in the textarea
+            document.getElementById('output').value = markdownOutput;
         }
 
         function copyToClipboard() {
-            // Create a new textarea element
-            var textarea = document.createElement("textarea");
-            // Set the value of the textarea to the text you want to copy
-            textarea.value = document.getElementById('output').innerText;
-            // Append the textarea to the body
-            document.body.appendChild(textarea);
             // Select the text
-            textarea.select();
+            document.getElementById('output').select();
             // Execute the "copy" command
             document.execCommand('copy');
-            // Remove the textarea from the body
-            document.body.removeChild(textarea);
         }
     </script>
 </body>
