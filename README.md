@@ -1,5 +1,8 @@
 # Convert Reddit Comments to Markdown
 
+![image](https://github.com/xRyul/reddit-to-markdown/assets/47340038/9469633c-a2be-44e2-a3ea-7095a8a00b4e)
+
+
 Fetches comments from any Reddit thread and converts them into Markdown format. 
 
 ## Usage
