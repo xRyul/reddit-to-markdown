@@ -12,7 +12,7 @@ body {
     height: 200px;
     resize: both;
     overflow: auto;
-    max-width: 97vw;
+    max-width: 96vw;
     max-height: 90vh;
     background-color: #44475a;
     color: #f8f8f2;
@@ -23,7 +23,7 @@ body {
 }
 #copyButton {
     position: absolute;
-    top: 10px;
+    top: 22px;
     right: 10px;
     cursor: pointer;
     fill: #50fa7b;
