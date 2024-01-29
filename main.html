@@ -6,6 +6,7 @@
 <body>
     <input type="text" id="url" placeholder="Enter the Reddit post URL">
     <button onclick="getComments()">Get Comments</button>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
     <div id="output"></div>
 
     <script>
@@ -47,6 +48,21 @@
             
             // Output the comments in the div
             document.getElementById('output').innerHTML = markdownOutput;
+        }
+
+        function copyToClipboard() {
+            // Create a new textarea element
+            var textarea = document.createElement("textarea");
+            // Set the value of the textarea to the text you want to copy
+            textarea.value = document.getElementById('output').innerText;
+            // Append the textarea to the body
+            document.body.appendChild(textarea);
+            // Select the text
+            textarea.select();
+            // Execute the "copy" command
+            document.execCommand('copy');
+            // Remove the textarea from the body
+            document.body.removeChild(textarea);
         }
     </script>
 </body>
