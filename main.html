@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reddit Comments in Markdown</title>
+</head>
+<body>
+    <input type="text" id="url" placeholder="Enter the Reddit post URL">
+    <button onclick="getComments()">Get Comments</button>
+    <div id="output"></div>
+
+    <script>
+        async function getComments() {
+            // Get the URL from the input field
+            const url = document.getElementById('url').value + '.json';
+            
+            // Fetch the JSON data from the Reddit post
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            // Get the list of comments
+            const comments = data[1].data.children;
+            
+            let markdownOutput = '';
+            
+            // Recursive function to handle nested comments
+            function parseComment(comment) {
+                if (comment.kind === 't1') {  // t1 signifies a comment
+                    const author = comment.data.author;
+                    const body = comment.data.body;
+                    
+                    // Convert to Markdown (here, we're just adding bold formatting to the author name)
+                    markdownOutput += `**${author}** : ${body}<br><br>`;
+                    
+                    // Check for replies to the comment
+                    if ('replies' in comment.data && comment.data.replies !== '') {
+                        for (let reply of comment.data.replies.data.children) {
+                            parseComment(reply);
+                        }
+                    }
+                }
+            }
+            
+            // Loop through the comments
+            for (let comment of comments) {
+                parseComment(comment);
+            }
+            
+            // Output the comments in the div
+            document.getElementById('output').innerHTML = markdownOutput;
+        }
+    </script>
+</body>
+</html>
